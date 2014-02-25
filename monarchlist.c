@@ -13,7 +13,7 @@ Objectives:
     Create a function for each of the following:
     - adding an element at the beginning of the list
     - removing an element
-    - adding an element at the end of the list (not yet implemented)
+    - adding an element at the end of the list
     - finding and printing the monarch with the earliest start of reign and print the name
     - finding the monarch with the earliest start of reign and print and their name and the dates
     - deleting the whole list
@@ -33,6 +33,34 @@ struct node{
 };
 
 struct node *head = NULL;
+
+
+void addend ()
+{
+    struct node *listnode;
+    listnode=malloc(sizeof(struct node));
+    printf("Name (no spaces): ");
+    scanf("%s", &listnode->monarchname);
+    printf ("Reign in format year-year: ");
+    scanf("%d-%d", &listnode->reignStart, &listnode->reignEnd);
+
+    if (head!=NULL)
+    {
+        struct node *traversenode = head;
+        while (traversenode->next!=NULL)
+        {
+            traversenode=traversenode->next;
+        }
+        traversenode->next=listnode;
+        listnode->next=NULL;
+    }
+
+    else
+    {
+        head=listnode;
+        head->next=NULL;
+    }
+}
 
 void addstart(){
     struct node *listnode;
@@ -174,19 +202,16 @@ int main(){
 /*
     To do:
     - adding a menu to choose which function to call.
-    - adapting the function to the possibility of a different oder,
+    - adapting the function to the possibility of a different order,
         (such as "showlist" before the list has any elements).
     - dealing with names with spaces.
     - dealing with mistakes in input format
     - ...
 */
-    addstart();
-    addstart();
-    addstart();
+    addend();
+    addend();
+    addend();
     showlist();
-    oneRemoved();
-    showlist();
-
     begonelist();
 return 0;
 }
