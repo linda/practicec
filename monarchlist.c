@@ -18,6 +18,8 @@ Objectives:
     - finding the monarch with the earliest start of reign and print and their name and the dates
     - deleting the whole list
     - printing the whole list
+    - entering a name and finding all other monarch whose reign overlaps with that
+        of the one entered
     - tbc
 */
 
@@ -35,7 +37,22 @@ struct node{
 struct node *head = NULL;
 
 
-void addend ()
+
+void findOverlap ()
+    {
+        const char aMonarch [40];
+        printf ("Enter a name: ");
+        scanf ("%s", &aMonarch);
+        struct node *traversenode=head;
+
+
+        while (traversenode!=NULL)
+        {
+
+        }
+    }
+
+void addend (int *a)
 {
     struct node *listnode;
     listnode=malloc(sizeof(struct node));
@@ -60,9 +77,10 @@ void addend ()
         head=listnode;
         head->next=NULL;
     }
+    (*a)++;
 }
 
-void addstart(){
+void addstart(int *a){
     struct node *listnode;
     listnode=malloc(sizeof(struct node));
     printf("Name (no spaces): ");
@@ -78,6 +96,7 @@ void addstart(){
         head=listnode;
         listnode->next=NULL;
     }
+    (*a)++;
 }
 
 void showlist(){
@@ -128,7 +147,7 @@ void earlieststart() //Programm should print the name of the monarch with the ea
 }
 
 
-void oneRemoved() //removes one name; if appears several times, removes the first in the list
+void oneRemoved(int *a) //removes one name; if appears several times, removes the first in the list
     {
         const char toBeRemovedString[40];
         int foundOne = 0;
@@ -178,6 +197,7 @@ void oneRemoved() //removes one name; if appears several times, removes the firs
         if (foundOne==1)
         {
             printf("Deleted %s\n", toBeRemovedString);
+            (*a)--;
         }
         else
         {
@@ -206,11 +226,20 @@ int main(){
         (such as "showlist" before the list has any elements).
     - dealing with names with spaces.
     - dealing with mistakes in input format
+    - preventing input longer than 40 for names
+    - shorten the code (fewer if/elses)
     - ...
 */
-    addend();
-    addend();
-    addend();
+
+    int counter = 0;
+    addend(&counter);
+    printf("%d\n", counter);
+    addstart(&counter);
+    printf("%d\n", counter);
+    addend(&counter);
+    printf("%d\n", counter);
+    oneRemoved(&counter);
+    printf("%d\n", counter);
     showlist();
     begonelist();
 return 0;
