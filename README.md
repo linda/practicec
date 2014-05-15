@@ -1,4 +1,4 @@
 practicec
 =========
 
-Repository for small c programs written for practice
+Repository for small c programs written for practice.
